@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Eats</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <img src="https://assets.onecompiler.app/434d7fyw2/434dbvvxx/IMG_20241228_184710_642-removebg-preview%20(2).png" alt="Eco Eats Logo" >
+    <center><h1>Eco Eats</h1></center>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#how-it-works">How it Works</a>
+      <a href="#impact">Impact</a>
+      <a href="#contact">Contact</a>
+      <!-- Login/Signup Button that links to login.html -->
+      <button class="login-signup-btn" onclick="navigateToLogin()">Login/Signup</button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Rescue Food. Reduce Waste. Nourish Communities.</h2>
+    <p>Eco Eats connects businesses with excess food to local charities that need it most. Together, we can help reduce food waste and hunger. Join us today!</p>
+    <div class="cta">
+      <button>Get Started</button>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <center>
+  <section class="how-it-works" id="how-it-works">
+    <h3>How It Works</h3>
+    <p>Our platform makes it easy for restaurants, grocery stores, and food vendors to donate surplus food to those in need. Here’s how it works:</p>
+    <div class="steps">
+      <div class="step">
+        <h4>Step 1: Sign Up</h4>
+        <p>Join Eco Eats by signing up on our platform. It's free and easy to get started.</p>
+      </div>
+      <div class="step">
+        <h4>Step 2: Donating or Selling Surplus Food</h4>
+        <p>List the food you want to sell or donate, and we'll connect you with a users or NGOs in need.</p>
+      </div>
+      <div class="step">
+        <h4>Step 3: Pickup and Delivery</h4>
+        <p>We handle the logistics. Our team picks up the food from your location and delivers it to the community.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Impact Section -->
+  <section class="impact" id="impact">
+    <h3>The Impact We're Making</h3>
+    <p>Together, we’re making a real difference. Look at the positive impact we’ve had so far:</p>
+    <div class="stats">
+      <div class="stat">
+        <h4>500+ Meals Donated</h4>
+      </div>
+      <div class="stat">
+        <div class="stat">
+          <h4>100+ Stores on-board</h4>
+        </div>
+        <div class="stat">
+        <h4>100+ Local Communities Served</h4>
+      </div>
+      <div class="stat">
+        <h4>100+ Volunteers Engaged</h4>
+      </div>
+    </div>
+  </section>
+</center>
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
+    <h3>What Our Partners Say</h3>
+    <div class="testimonial">
+      <p>"Eco Eats has been a game-changer for our organization. We're able to provide fresh food to those in need thanks to their platform."</p>
+      <p>- Local Charity Director</p>
+    </div>
+    <div class="testimonial">
+      <p>"The process is so easy. We're able to donate food quickly and know it's going to help people in our community."</p>
+      <p>- Restaurant Owner</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 Eco Eats. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </footer>
+
+  <script src="home.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // Function to navigate to login.html
+    function navigateToLogin() {
+      window.location.href = "login.html"; // Directs to the login page
+    }
+
+    // Handling the form submission for login (this is not used in this code directly, but assumed for backend integration)
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = document.querySelector('input[type="email"]').value;
+      const password = document.querySelector('input[type="password"]').value;
+
+      try {
+        const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+        alert('Login successful!');
+        console.log(response.data.token); // The token you get from the backend
+        localStorage.setItem('authToken', response.data.token); // Store the token for further requests
+      } catch (error) {
+        console.error('Login failed', error.response.data);
+        alert('Login failed!');
+      }
+    });
+  </script>
+</body>
+</html>
